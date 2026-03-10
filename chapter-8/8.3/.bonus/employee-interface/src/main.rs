@@ -8,6 +8,8 @@ fn main() {
     add_employee_to_company(& mut comps, String::from("Comp2"), String::from("Dep1"), String::from("Empl1"));
     add_employee_to_company(& mut comps, String::from("Comp1"), String::from("Dep2"), String::from("Empl2"));
     add_employee_to_company(& mut comps, String::from("Comp2"), String::from("Dep2"), String::from("Empl2"));
+    add_employee_to_company(& mut comps, String::from("Comp2"), String::from("Dep2"), String::from("Empl3"));
+    add_employee_to_company(& mut comps, String::from("Comp2"), String::from("Dep2"), String::from("Empl2"));
     println!("{comps:#?}");
 
     print_company(& mut comps, "Comp1".to_string());
@@ -56,11 +58,12 @@ fn main() {
     // }
 }
 
-fn print_dep(deps: & HashMap<String, Vec<String>>, 
+fn print_dep(deps: & mut HashMap<String, Vec<String>>, 
                 dep_name: String) {
-    let ok_opt = deps.get(&dep_name);
+    let ok_opt = deps.get_mut(&dep_name);
     if let Some(empl_vec) = ok_opt {
         println!("{dep_name} department employees:");
+        empl_vec.sort();
         for empl in empl_vec {
             println!("{empl}");
         }
@@ -74,9 +77,9 @@ fn print_company(comps: & mut HashMap<String, HashMap<String, Vec<String>>>,
     let ok_opt = comps.get_mut(&comp_name);
     if let Some(dep_map) = ok_opt {
         println!("{comp_name} company employees:");
-        let temp = dep_map.clone();
+        let mut temp = dep_map.clone();
         for (key, _) in dep_map {
-            print_dep( &temp, key.to_string());
+            print_dep( & mut temp, key.to_string());
         }
     } else {
         println!("{comp_name} company does not exist");
