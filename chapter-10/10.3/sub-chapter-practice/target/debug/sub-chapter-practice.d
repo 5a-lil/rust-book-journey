@@ -1,0 +1,1 @@
+/Users/wofty/Documents/rust/the-rust-programming-language/chapter-10/10.3/sub-chapter-practice/target/debug/sub-chapter-practice: /Users/wofty/Documents/rust/the-rust-programming-language/chapter-10/10.3/sub-chapter-practice/src/main.rs
